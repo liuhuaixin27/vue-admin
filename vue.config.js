@@ -9,7 +9,7 @@ module.exports = {
   /** vue3.0内置了webpack所有东西，
    * webpack配置,see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
    **/
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
     svgRule
@@ -17,18 +17,18 @@ module.exports = {
       .loader("svg-sprite-loader")
       .options({
         symbolId: "icon-[name]",
-        include: ["./src/icons"]
+        include: ["./src/icons"],
       });
   },
-  configureWebpack: config => {
+  configureWebpack: (config) => {
     config.resolve = {
       // 配置解析别名
       extensions: [".js", ".json", ".vue"], // 自动添加文件名后缀
       alias: {
         vue: "vue/dist/vue.js",
         "@": path.resolve(__dirname, "./src"),
-        "@c": path.resolve(__dirname, "./src/components")
-      }
+        "@c": path.resolve(__dirname, "./src/components"),
+      },
     };
   },
   // 生产环境是否生成 sourceMap 文件
@@ -42,9 +42,9 @@ module.exports = {
     // css预设器配置项
     loaderOptions: {
       scss: {
-        prependData: `@import "./src/styles/main.scss";`
-      }
-    }
+        prependData: `@import "./src/styles/main.scss";`,
+      },
+    },
     // requireModuleExtension: false
     // 启用 CSS modules for all css / pre-processor files.
     // modules: false
@@ -69,19 +69,19 @@ module.exports = {
         target: "http://www.web-jshtml.cn/productapi/token", //API服务器的地址  http://www.web-jshtml.cn/api
         changeOrigin: true,
         pathRewrite: {
-          "^/devApi": ""
-        }
-      }
+          "^/devApi": "",
+        },
+      },
     },
     overlay: {
       // 全屏模式下是否显示脚本错误
       warnings: true,
-      errors: true
+      errors: true,
     },
-    before: app => {}
+    before: (app) => {},
   },
   /**
    * 第三方插件配置
    */
-  pluginOptions: {}
+  pluginOptions: {},
 };
